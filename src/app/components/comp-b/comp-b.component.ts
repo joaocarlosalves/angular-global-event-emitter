@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 
 @Component({
-  selector: 'app-comp-b',
-  templateUrl: './comp-b.component.html',
-  styleUrls: ['./comp-b.component.scss']
+  selector: 'comp-b',
+  template: `
+    <div class="comp comp-b">
+      <h6>Componente B</h6>
+      {{ content }}
+    </div>
+  `,
+  styleUrls: []
 })
-export class CompBComponent implements OnInit {
+export class CompBComponent {
 
-  content: any = '234234';
+  content: any = '[ _•_ ( -- Initial Value -- ) _•_ ]';
 
   constructor() { 
     EventEmitterService.get('test').subscribe(data => this.content = data);
-  }
-
-  ngOnInit() {
-
   }
 
   ngOnDestroy() {

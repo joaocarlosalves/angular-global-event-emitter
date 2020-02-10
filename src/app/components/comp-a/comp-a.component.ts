@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 
 @Component({
-  selector: 'app-comp-a',
-  templateUrl: './comp-a.component.html',
-  styleUrls: ['./comp-a.component.scss']
+  selector: 'comp-a',
+  template: `
+    <div class="comp comp-a">
+      <h6>Component A</h6>
+      <input type="text" [(ngModel)]="emit" />
+      <button type="button" (click)="emitToB()">EMIT</button>
+    </div>
+  `,
+  styleUrls: []
 })
-export class CompAComponent implements OnInit {
+export class CompAComponent {
 
   emit: any;
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
   emitToB(){ 
-    console.log(this.emit);
     EventEmitterService.get('test').emit(this.emit);
   }
 
